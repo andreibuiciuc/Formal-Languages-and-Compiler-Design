@@ -1,0 +1,12 @@
+@let a, b
+
+-> 'Enter a =' 
+<- a
+-> 'Enter b =' 
+<- b
+
+@check (a < b) 
+    -> a
+@!check
+    -> b
+

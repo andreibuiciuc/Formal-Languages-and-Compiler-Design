@@ -1,0 +1,30 @@
+** Error 1
+@let a
+
+** Multiple inline statements without pipe
+-> 'Enter a=' <- a
+
+
+
+** Error 2
+@let a, i
+
+**also correct
+@print 'Enter a=' | @enter a 
+
+** but 
+** reserved keywords is used without @ decorator
+iterate (i, 0, 1, 1)
+    -> 'i=' | <- i
+
+
+
+** Error 3
+@let a
+
+** is not used properly; only available inside @check statements
+a is 1
+
+** this is correct
+@check (a is 1)
+    -> 'Greater than 1'

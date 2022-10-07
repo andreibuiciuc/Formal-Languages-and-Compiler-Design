@@ -1,0 +1,14 @@
+@let i, n, flag
+
+-> 'Enter n=' | <-
+flag = true
+
+@iterate (i, 1, n / 2, step=1)
+    @check (n % i is 0)
+        -> `${n} not a prime number`
+        flag = false
+        @stop
+
+@check (flag is true)
+    -> `${n} prime number`
+
