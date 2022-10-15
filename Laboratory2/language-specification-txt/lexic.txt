@@ -1,0 +1,41 @@
+Lexic
+
+Alphabet
+    - upper and lower case letters of the english alphabet: a-z, A-Z
+    - decimal digits: 0-9
+
+a. Special symbols:
+    arithmetic operators: +, -, *, /, %
+    assignment operator: =
+    equality and order operators: ==, is, !=, is not, <, <=, >, >=
+    boolean (logic operators): not, and, or
+    increment/decrement operators: ++, --
+    separators: [ ], \n, :, ;, space, \n
+    reserved words: @let, @check, @otherwise, @iterate, @stop, @print, @enter, @while
+
+b. Identifiers
+    id =  letter{letter|digit}
+    letter = "a" | "b" | ... |  "c" | "A" | ... | "Z"
+    digit = "0" | "1" | ... "9"
+    sign = "+" | "-"
+    zero_digit = 0
+    non_zero_digit =  "1" | ... "9"
+    comma = ","
+
+c. Constants
+      i) integer:
+         integer = zero_digit | sign non_zero_digit { zero_digit | non_zero_digit } 
+     ii) character:
+         character = """ char """
+         char = letter | digit
+    iii) string:
+         string = """ {char} """
+
+d. User defined data type
+     iv) object
+         object = "{" { id ":" constant "," } { id ":" constant }  "}"
+         constants = integer | character | string
+      v) array
+         array = "[" { constant ","} constant ]
+     vi) float
+         float = sign digit {digit} [comma digit {digit}]
