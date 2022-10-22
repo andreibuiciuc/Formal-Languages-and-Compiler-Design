@@ -83,24 +83,3 @@ class HashTable:
             return None
         else:
             return current_node.value
-
-
-class SymbolTable:
-    def __init__(self) -> None:
-        self.__content = HashTable()
-
-    def insert_element(self, key, value):
-        self.__content.insert_element(key, value)
-
-    def remove_element(self, key):
-        return self.__content.remove_element(key)
-
-    def find_element(self, key):
-        return self.__content.find_element(key)
-
-table = SymbolTable()
-
-table.insert_element('a', 20)
-print(table.find_element('a'))
-print(table.remove_element('a'))
-print(table.find_element('a'))
