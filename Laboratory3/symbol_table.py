@@ -1,11 +1,9 @@
-import string
 from hash_table.hash_table import HashTable
 
 class SymbolTable:
     def __init__(self):
         self.__elements = HashTable()
 
-    # IDENTIFIERS
     def insert_element(self, key, value):
         return self.__elements.insert_element(key=key, value=value)
     
