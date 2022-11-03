@@ -12,3 +12,9 @@ class SymbolTable:
 
     def find_element(self, key):
         return self.__elements.find_element(key=key)
+
+    def get_position(self, key):
+        return self.__elements.get_position(key=key)
+    
+    def get_string_representation(self):
+        return self.__elements.get_string_representation()

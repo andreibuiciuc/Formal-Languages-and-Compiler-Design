@@ -1,0 +1,11 @@
+let a, b
+
+@print "Enter a =" 
+@enter a
+@print "Enter b =" 
+@enter b
+
+@check (a < b) 
+    @print a
+@otherwise
+    @print b

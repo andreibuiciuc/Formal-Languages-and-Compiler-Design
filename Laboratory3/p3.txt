@@ -1,0 +1,10 @@
+@let array, num, sum = 0, i
+
+n = 5
+@iterate (i, 0, n-1, 1)
+    array[i] = i     
+
+@iterate (i, 0, n-1, 1)
+    sum = sum + array[i]
+
+@print sum
