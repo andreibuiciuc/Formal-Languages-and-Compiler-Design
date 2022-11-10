@@ -38,3 +38,7 @@ assert found_value_b == 20
 found_value_c = symbol_table.find_element('c')
 assert found_value_c == 30
 
+print(symbol_table.get_position('z'))
+
+print(symbol_table.get_string_representation())
+print(symbol_table.get_position('b'))

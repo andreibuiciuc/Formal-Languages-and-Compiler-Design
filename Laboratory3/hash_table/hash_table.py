@@ -1,4 +1,5 @@
 CAPACITY = 10
+DEFAULT_INDEX = [-1, -1]
 
 class Node:
     def __init__(self, key, value):
@@ -26,9 +27,6 @@ class HashTable:
     def insert_element(self, key, value):
         # Insertion in the hash table
         # Parameters: key -> string, value
-        if self.find_element(key) is not None:
-            return
-
         self.__size = self.__size + 1
         index = self.__hash_function(key)
         current_node = self.__elements[index]
@@ -90,17 +88,19 @@ class HashTable:
         # Retrieves the position of an element in the hash table and also in the inner linked list
         # Parameters: key -> string
         # Return a tuple containing the position in the table and in the innner linked list
-        if self.find_element(key) != None:
-            index_in_table = self.__hash_function(key)
-            index_in_list = 0
+      
+        index_in_table = self.__hash_function(key)
+        index_in_list = 0
 
-            current_node = self.__elements[index_in_table]
-            while current_node is not None and current_node.key != key:
-                index_in_list = index_in_list + 1
-                current_node = current_node.next
-            
-            return [index_in_table, index_in_list]
-        return [-1, -1]
+        current_node = self.__elements[index_in_table]
+        while current_node is not None and current_node.key != key:
+            index_in_list = index_in_list + 1
+            current_node = current_node.next
+        
+        if current_node is None:
+            return DEFAULT_INDEX
+
+        return [index_in_table, index_in_list]
 
     def get_string_representation(self):
         string_representation = ""

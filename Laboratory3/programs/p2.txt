@@ -1,0 +1,14 @@
+@let i, n, flag
+
+@enter n
+flag = true
+
+@iterate (i, 1, n / 2, 1)
+    @check (n % i == 0)
+        flag = false
+        @stop
+
+@check (flag == true)
+    @print "prime number"
+@otherwise
+    @print "not a prime number"
