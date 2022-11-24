@@ -1,0 +1,51 @@
+Documentation -- Scanner Implementation
+
+The Scanner is responsible of detecting, classifying and codifying lexical tokens for a given program which is interpreted as a
+sequence of characters. The detection is done by parsing lines of text which is tokenized into separate tokens, each token being
+checked and then, depending on its nature, added or not, accordingly, into the Symbol Table or into the PIF.
+
+Utility enums used by the Scanner class:
+
+    TextFilepath: holds values for the input and output files
+    ScannerUtils: holds values for different constants used by the Scanner class
+
+Scanner:
+    - attributes
+        - symbol_table: the symbol table of the current program
+        - pif: the PIF of the current program
+        - is_lexically_correct: flag denoting the correctness of the current program, updated after the scanning is complete
+
+    - static methods:
+        - is_constant(token: string)
+            Checks whether the given token is a constant
+        - is_reserved_word(token: string)
+            Checks whether the given token is a reserved word
+        - is_operator(token: string)
+            Checks whether the given token is an operator
+        - is_separator(token: string)
+            Checks whether the given token is a separator
+        - is_identifier(token: string)
+            Checks whether the given token is an identifier
+
+    - private methods:
+        - print_lexical_error(line_number: integer, token: string): void
+            Prints an error message denoting the lexical error triggered by the given token found on the given line number
+        - get_pif_string_representation(): string
+            Builds and returns the string representation of the PIF
+        - get_string_constant(line: string, index: integer): string
+            Parses the line starting from the given index in order to form a string constant, until the string constant is built or the 
+            index reaches the end of the line
+        - get_operator(line: string, index: integer): string
+            Parses the string formed by the characters found on the index and index + 1 positions in order to form an operator.
+        - tokenize(line: string): string[]
+            Parses and splits the line into tokens
+        - check_tokens_by_line(token: string, line_number: integer): void
+            Classifies the given token and inserts accordingly into the symbol table and into the PIF. If the token cannot be classified,
+            it sets the is_lexically_correct attribute to false and prints the lexical error
+    
+    - public methods:
+        - scan(program_file_path: string): void
+            Opens and reads the text file found and the given file path and starts the scanning process. When done, it prints 
+            a confirmation message denoting the correctness of the program
+        - get_results(): void
+            Writes into the output files the state of the symbol table and the PIF, using their string representation

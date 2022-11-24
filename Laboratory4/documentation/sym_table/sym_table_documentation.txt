@@ -1,0 +1,31 @@
+Documentation -- Symbol Table Implementation
+
+The data structure of choice for implementing the Symbol Table is the Hash Table (fixed capacity), 
+unique for identifiers and constants. Each slot in the Hash Table represents the head of a singly linked list (Node) 
+which is index-positioned by a hash fuction. Each Node consists of a key, a value and a 'next' reference to the next node 
+in the list.
+
+The mechanism used for solving the collisions is the usage of singly linked lists. Multiple elements with the same value 
+computed by the hash function will be linked together and will have the same position in the hash table.
+
+SymbolTable:
+     Insertion of an element into the symbol table
+     - the hash function of the hash table will compute the index for the given key and place the new node depending on the state
+       of the linked list on that position
+     - if the position is empty, the new node will become the head of the list
+     - otherwise, it will iterate until the end of the list and it will be placed as the last element 
+     + (void) insert_element(key: TKey, value: TElem)
+
+    Removal of an element from the symbol table
+    - the hash function of the hash table will compute the index for the given key
+    - the node is searched by iterating the linked list found on the position computed by the hash function
+    - if the node is found, then it gets deleted and the deleted value is returned
+    - otherwise, a value of None is returned
+    + (TElem | None) remove_element(key: TKey)
+
+    Search of an element from the symbol table
+    - the hash function of the hash table will compute the index for the given key
+    - the node is then searched by iterating the linked list found on the position computed by the hash function
+    - if the node is found, then the found value is returned
+    - otherwise, a value of None is returned
+    + (TElem | None) find_element(key: TKey)

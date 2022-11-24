@@ -1,0 +1,9 @@
+@let a, b
+
+@enter a
+@enter b
+
+@check (a < b) 
+    @print a
+@otherwise
+    @print b

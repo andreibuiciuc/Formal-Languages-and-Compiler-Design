@@ -1,0 +1,10 @@
+@let a, result, b = "test
+a = -1
+@let 3c = 2
+
+result = a + 2
+@check(result > 0)
+    @print a
+@else
+    @print 0
+

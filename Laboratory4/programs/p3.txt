@@ -1,0 +1,7 @@
+@let i, n, sum
+@enter n
+
+@iterate (i, 0, n, 1)
+    sum = sum + i
+
+@print sum

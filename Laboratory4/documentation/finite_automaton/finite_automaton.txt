@@ -1,0 +1,51 @@
+Documentation -- Finite Automaton Implementation
+
+The FiniteAutomaton is responsible of checking whether a given finite automaton is deterministic, and if so, whether a given sequence
+is accepted. The class allows for reading and parsing the finite automaton from an input file and provides methods to display its 
+elements (alphabet, states, transitions) and to validate both the finite automaton and an user chosen sequence.
+
+The structure of the finite automaton input file (FA.in)
+    - line 1: all the states of the finite automaton, separated by the LINE_SEPARATOR
+    - line 2: all the alphabet elements, separated by the LINE_SEPARATOR
+    - line 3: the initial state 
+    - line 4: all the final states of the finite automaton, separated by the LINE_SEPARATOR
+    - line by line: representation of the transition function: source, alphabet element, destination, separated by the LINE_SEPARATOR
+
+Utility enums used by the FiniteAutomaton class:
+    TextFilepath: holds values for the input file
+
+FiniteAutomaton
+    - attributtes
+        - alphabet: set containing the alphabet
+        - states: set containing the states of the program
+        - initial_state: the initial state
+        - transitions: dictionary containing the transitions
+
+    - static methods
+        - print_menu() -> void:
+            Displays the menu.
+    
+    - public methods
+        - start() -> void
+            Starts the program. The user can choose an action to be performed based on a menu.
+
+    - private methods
+        - read_finite_automaton_file(finite_automaton_filepath: string) -> void
+            Reads the Finite Automaton from an input file given as the parameter.
+
+        - check_if_finite_automaton_is_deterministic() -> bool
+            Checks whether the Finite Automaton is deterministic.
+
+        - check_if_sequence_is_accepted(sequence: string) -> bool
+            Checks whether the given sequence is accepted by the Finite Automaton.
+
+        - diplay_states(is_final_states: bool) -> void
+            Displays the set containing the states or only the final states of the program based on 
+            the is_final_states parameter (default is False).
+
+        - display_alphabet() -> void
+            Displays the set containing the alphabet.
+        
+        - display_transitions() -> void
+            Displays the transitions based on a transition representation.
+            Transition representation: (p, a) -> q, where p, q are states and a is an alphabet element
