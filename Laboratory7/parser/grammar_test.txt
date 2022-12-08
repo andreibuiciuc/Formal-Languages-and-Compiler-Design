@@ -1,0 +1,5 @@
+SS A
+a b c
+SS
+SS ::= "a" A
+A ::= "b" A | "c"
