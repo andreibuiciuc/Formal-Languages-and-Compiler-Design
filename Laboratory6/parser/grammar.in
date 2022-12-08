@@ -1,0 +1,27 @@
+multiple_declarations RELATION condition whilestmt ifstmt program decllist cmpdstmt declaration type1 arraydecl type cmpdstmt stmtlist stmt simplstmt assignstmt expression term factor iostmt structaccessstmt IDENTIFIER structstmt
+char integer if then el while repeat var end * + - / % mod space : ; read write struct array of [ ] $ = == <= < > >= [ ] { } ( )
+program
+program ::= "var" decllist ";" cmpdstmt "end"
+decllist ::= "" | multiple_declarations
+multiple_declarations ::= declaration ";" decllist
+declaration ::= IDENTIFIER ":" type | "struct " IDENTIFIER "(" decllist ")"
+type1 ::= "char" | "integer" | arraydecl
+arraydecl ::= "array" "[" nr "]" "of" type1
+type  ::= type1
+cmpdstmt ::= "$" stmtlist "$"
+stmtlist ::= "" | multiple_stmts
+multiple_stmts ::= stmt ";" stmtlist
+stmt ::= simplstmt | structstmt
+simplstmt ::= assignstmt | iostmt | structaccessstmt
+assignment ::= IDENTIFIER "=" expression
+expression ::= expression "+" term | expression "-" term | term
+term ::= term "*" factor | term "/" factor | factor
+factor ::= "(" expression ")" | IDENTIFIER
+iostmt ::= "read" "(" IDENTIFIER ")" | "write" "(" IDENTIFIER ")" | "write" "(" string ")"
+structaccessstmt ::= IDENTIFIER "." IDENTIFIER
+IDENTIFIER ::= string | string "[" integer "]"
+structstmt ::= cmpdstmt | ifstmt | whilestmt
+ifstmt ::= "if" condition "then" stmt ["el" stmt]
+whilestmt ::= "while" condition "repeat" stmt
+condition ::= expression RELATION expression
+RELATION ::= "<" | "<=" | "==" | "<>" | ">=" | ">"

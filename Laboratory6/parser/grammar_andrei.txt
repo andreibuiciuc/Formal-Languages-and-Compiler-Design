@@ -1,0 +1,22 @@
+IDENTIFIER multiple_statements program_entry declaration_statement declaration_list statement_list statement simple_statement struct_statement compound_statement assignment_statement expression_statement term factor io_statement conditional_statement condition RELATION iterate_statement while_statement
+{ } ; + - * / % = == < <= > >= != [ ] ( ) ++ -- and or not @let @check @otherwise @iterate @while @stop @print @enter , :
+program_entry
+program_entry ::= statement_list
+declaration_statement ::= "@let" IDENTIFIER | declaration_list
+declaration_list ::= IDENTIFIER | IDENTIFIER "," declaration_list
+statement_list ::= "" | multiple_statements
+multiple_statements ::= statement ";" statement_list
+statement ::=  simple_statement | struct_statement
+simple_statement ::=  assignment_statement | io_statement
+struct_statement ::= compound_statement | conditional_statement | iterate_statement | while_statement
+compound_statement ::= "{" statement_list "}"
+assignment_statement ::= IDENTIFIER "=" expression_statement
+expression_statement ::= expression_statement "+" term | expression_statement "-" term | term
+term ::= term "*" factor | term "/" factor | factor
+factor ::= "(" expression_statement ")" | IDENTIFIER
+io_statement ::= "@enter" | "@print"
+conditional_statement ::= "@check" "(" condition ")" statement | "@check" "(" condition ")" statement "@otherwise" statement
+condition ::= expression_statement RELATION expression_statement
+RELATION ::= "==" | "is" | "!=" | "<" | "<=" | ">" | ">="
+iterate_statement ::= "@iterate" "(" IDENTIFIER "," CONSTANT "," expression_statement "," "step=" CONSTANT ")"  statement
+while_statement ::= "@while" "(" condition ")" compound_statement
