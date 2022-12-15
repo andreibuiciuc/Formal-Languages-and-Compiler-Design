@@ -176,5 +176,5 @@ class Scanner:
         f.write(str(pif_string_representation))
 
 scanner = Scanner()
-scanner.scan(TextFilepath.PERR_TXT_FILEPATH.value)
+scanner.scan(TextFilepath.P1_TXT_FILEPATH.value)
 scanner.get_results()
