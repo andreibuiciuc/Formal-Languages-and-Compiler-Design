@@ -1,0 +1,69 @@
+class Grammar:
+    def __init__(nonterminals, terminals, starting_symbol, productions, enhance=False)
+        Initializes a grammar with the given sets of nonterminals, terminals, productions and starting symbol.
+        Parameters:
+            - nonterminals: a set containing all nonterminals of the grammar
+            - terminals: a set containing all terminals of the grammar
+            - starting_symbol: string denoting the starting symbol
+            - productions: a map from each terminal to a list of right-hand sides for productions
+            - enhance: boolean value. When set to true, the grammar will automatically be enhanced
+
+
+    property get_terminals():
+        Gets all terminals for the grammar
+
+    property get_nonterminals():
+        Gets all nonterminals for the grammar
+
+    property get_starting_symbol():
+        Gets the starting symbol of the grammar
+
+    property get_productions():
+        Gets the set of all productions (list of Production objects)
+
+    def get_grammar_from_file(file_name, enhance):
+        Gets a grammar from the given file. It may also enhance it, if the enhance flah is set to true
+        Parameters:
+            file_name: the name of the file from where to read the grammar
+            enhance: boolean value. When set to true, the grammar will automatically be enhanced
+        Return value:
+            A Grammar object
+
+    def get_productions_for_nonterminal(nonterminal):
+        Gets all the productions for a given nonterminal.
+        Parameters:
+            nonterminal: The nonterminal for which we need the productions.
+        Return value:
+            A set of right-hand sides for the productions that start with the given nonterminal
+
+    def closure(items):
+        Gets the closure of a set of items.
+        Parameters:
+            items: a list of Item objects, for which we need the closure
+        Return value:
+            A set that contains the items of the closure
+
+    def go_to(state, element):
+        Goto function for LR(0) parser.
+        Parameters:
+            state: the initial state for goto
+            element: a symbol for which we need the goto from the initial state
+        Return value:
+            A set containing the computed goto
+
+    def col_can():
+        Computes the canonical collection of the grammar.
+        Return value:
+            A set of states that represents the canonical collection.
+
+    def construct_parsing_table():
+        Constructs the parsing table for this grammar.
+        Return value:
+            A ParsingTable object, representing the parsing table for the grammar
+
+    def parse(word):
+        Parses the given word.
+        Parameters:
+            word: The word we need parsed.
+        Return value:
+            A parsing tree, if the parsing was successful.

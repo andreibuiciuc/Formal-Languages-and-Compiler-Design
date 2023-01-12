@@ -1,0 +1,52 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int currentLine = 1;
+%}
+
+%option noyywrap
+
+NUMBER_CONST	0|[+|-]?[1-9][0-9]*
+STRING_CONST	[\"][a-zA-Z0-9_ ]*[\"]
+CHAR_CONST		[\'][a-zA-Z0-9_][\']
+IDENTIFIER		[a-zA-Z]+[a-zA-Z0-9_]*
+
+%%
+"@let"|"@while"|"@iterate"|"@stop"|"@check"|"@otherwise"|"@enter"|"@print"|"@step"           { printf("Reserved word: %s\n", yytext); }
+"let"|"while"|"iterate"|"stop"|"check"|"otherwise"|"enter"|"print"|"step"                    { printf("ERROR: WRONG use of reserved word ar line %d\n", currentLine); }
+"+"|"-"|"*"|"/"|"%"|"="|"=="|"!="|"<"|"<="|">"|">="                                          { printf("Operator: %s\n", yytext); }
+"{"|"}"|"["|"]"|"("|")"|";"|","|":"                                                          { printf("Separator: %s\n", yytext); }
+
+{NUMBER_CONST}		                                                                         { printf("Number: %s\n", yytext); }
+{STRING_CONST}		                                                                         { printf("String: %s\n", yytext); }
+{CHAR_CONST}		                                                                         { printf("Character: %s\n", yytext); }
+{IDENTIFIER}		                                                                         { printf("Identifier: %s\n", yytext); }
+
+[+|-]0		                                                                                 { printf("ERROR: WRONG numeric constant at line %d\n", currentLine); }
+[+|-]?[0][0-9]*                                                                              { printf("ERROR: WRONG numeric constant at line %d\n", currentLine); }
+[\'][a-zA-Z0-9_]+[\']                                                                        { printf("ERROR: WRONG char constant at line %d\n", currentLine); }
+[\"][a-zA-Z0-9_]+|[a-zA-Z0-9_]+[\"]                                                          { printf("ERROR: WRONG string constant at line %d\n", currentLine); }
+
+[ \t]+  	{}
+[\n]+                                                                                        { currentLine = currentLine + 1; }
+%%
+
+void main(argc, argv)
+int argc;
+char** argv;
+{           
+if (argc > 1)
+{
+    FILE *file;
+    file = fopen(argv[1], "r");
+    if (!file)
+    {
+        fprintf(stderr, "Could not open %s\n", argv[1]);
+        exit(1);
+    }
+    yyin = file;
+}
+
+yylex();
+}

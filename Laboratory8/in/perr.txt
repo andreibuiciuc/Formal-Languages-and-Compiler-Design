@@ -1,0 +1,12 @@
+let a, b, c;
+
+a = 10;
+b = 20;
+c = "12;
+
+@check (a < b) 
+    @print a;
+@otherwise
+    print b;
+
+let c = 'asd';
